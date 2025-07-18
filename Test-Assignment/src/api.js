@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api', // replace with your deployed backend URL later
+  baseURL: 'https://assignment-8hzp.onrender.com/api', 
 });
 
 export default API;

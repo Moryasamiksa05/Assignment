@@ -1,22 +1,13 @@
-
-import React, { useState } from "react";
+import React from "react";
 import ARViewer from "./components/ARViewer";
 import CTAButton from "./components/CTAButton";
 import AnalyticsPanel from "./components/AnalyticsPanel";
-import qrImage from "./assets/ARHorizon_QR.png";
 
 const App = () => {
-  const [scanned, setScanned] = useState(false);
-
   const dummyStats = {
     totalScans: 120,
     uniqueUsers: 88,
     avgTimeSpent: '3m 15s',
-  };
-
-  const handleSimulateScan = () => {
-    // Simulate QR scan
-    setScanned(true);
   };
 
   return (
@@ -26,31 +17,13 @@ const App = () => {
           🧠 Experience Print Come to Life
         </h1>
         <p className="text-gray-600 text-lg">
-          Scan the QR code below using your phone to launch the AR experience.
+          Enjoy your immersive Augmented Reality experience below.
         </p>
       </div>
 
-      {!scanned ? (
-        <>
-          <img
-            src={qrImage}
-            alt="Scan this QR"
-            className="w-64 h-64 mb-6 border-4 border-gray-300 rounded-xl shadow-md"
-          />
-          {/* <button
-            className="px-8 py-3 bg-indigo-600 text-white text-lg rounded-full shadow-lg hover:bg-indigo-700 transition-all"
-            onClick={handleSimulateScan}
-          >
-            Simulate QR Scan
-          </button> */}
-        </>
-      ) : (
-        <>
-          <ARViewer />
-          <CTAButton />
-          <AnalyticsPanel stats={dummyStats} />
-        </>
-      )}
+      <ARViewer />
+      <CTAButton />
+      <AnalyticsPanel stats={dummyStats} />
     </div>
   );
 };

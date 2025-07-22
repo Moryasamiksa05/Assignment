@@ -1,10 +1,12 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const ScanSchema = new mongoose.Schema({
-  ip: String,
-  userAgent: String,
-  timestamp: { type: Date, default: Date.now },
-  timeSpent: Number
+const scanSchema = new mongoose.Schema({
+  userIP: String,
+  timeSpent: Number,
+  scannedAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-module.exports = mongoose.model('Scan', ScanSchema);
+module.exports = mongoose.model("Scan", scanSchema);

@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ARViewer from "./components/ARViewer";
 import CTAButton from "./components/CTAButton";
 import AnalyticsPanel from "./components/AnalyticsPanel";
+import API from "./api"; 
 
 const App = () => {
-  const dummyStats = {
-    totalScans: 120,
-    uniqueUsers: 88,
-    avgTimeSpent: '3m 15s',
-  };
+  const [stats, setStats] = useState(null);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const res = await API.get("/analytics"); 
+        setStats(res.data);
+      } catch (error) {
+        console.error("Error fetching analytics:", error);
+      }
+    };
+
+    fetchStats();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 flex flex-col items-center p-6">
@@ -23,7 +33,7 @@ const App = () => {
 
       <ARViewer />
       <CTAButton />
-      <AnalyticsPanel stats={dummyStats} />
+      <AnalyticsPanel stats={stats} />
     </div>
   );
 };

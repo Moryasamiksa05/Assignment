@@ -1,4 +1,22 @@
-const AnalyticsPanel = ({ stats }) => {
+import React, { useEffect, useState } from "react";
+import API from "../api"; 
+
+const AnalyticsPanel = () => {
+  const [stats, setStats] = useState(null);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const res = await API.get("/analytics"); 
+        setStats(res.data);
+      } catch (error) {
+        console.error("Failed to fetch analytics:", error);
+      }
+    };
+
+    fetchStats();
+  }, []);
+
   if (!stats) return null;
 
   return (
